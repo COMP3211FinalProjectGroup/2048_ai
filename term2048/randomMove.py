@@ -1,6 +1,6 @@
 """
 randomMove.py
-author: WONG, Ngo Yin
+author: peterwongny
 """
 import random
 
