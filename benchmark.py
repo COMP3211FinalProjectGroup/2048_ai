@@ -3,7 +3,7 @@ benchmark algorithms and output results.
 this file uses multiprocessing and bypass the graphical output so the speed is 100x
 modified from Github (https://gist.github.com/fungus/9821090)
 
-@author: WONG, Ngo Yin
+@author: peterwongny
 1. use txt file instead of database
 2. migrate to python 3
 3. now can use different algorithms
