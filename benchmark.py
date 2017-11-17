@@ -1,6 +1,6 @@
 """
 benchmark algorithms and output results.
-this file uses multiprocessing and bypass the graphical output so the speed is 100x
+this file uses multiprocessing and bypass the graphical output so the speed is 50x
 modified from Github (https://gist.github.com/fungus/9821090)
 
 @author: peterwongny
@@ -19,12 +19,16 @@ from multiprocessing import Process, Queue
 from term2048.game import Game
 
 from term2048 import randomMove
+from term2048 import greedyMove
+from term2048 import nStepLookAhead
 
 def run_game(q1, q2):
     while True:
         g = Game()
         while g.board.canMove():
-            m = randomMove.next_move()
+            # m = randomMove.next_move()
+            # m = greedyMove.next_move(g.board)
+            m = nStepLookAhead.next_move(g.board,2)
             g.incScore(g.board.move(m))
 
         if g.board.won():

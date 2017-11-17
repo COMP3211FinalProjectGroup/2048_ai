@@ -32,6 +32,8 @@ def parse_cli_args():
     parser.add_argument('-v', '--version', action='store_true')
     parser.add_argument('-r', '--rules', action='store_true')
     parser.add_argument('-rand', action='store_true', default=False)
+    parser.add_argument('-greedy', action='store_true', default=False)
+    parser.add_argument('-nstep', action='store_true', default=False)
     return vars(parser.parse_args())
 
 
