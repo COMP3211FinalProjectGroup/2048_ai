@@ -10,6 +10,8 @@ import sys
 import time
 
 from term2048 import randomMove
+from term2048 import greedyMove
+from term2048 import nStepLookAhead
 
 from colorama import init, Fore, Style
 init(autoreset=True)
@@ -66,7 +68,7 @@ class Game(object):
 
     def __init__(self, scores_file=SCORES_FILE, colors=COLORS,
                  store_file=STORE_FILE, clear_screen=True,
-                 mode=None, azmode=False, rand=False, **kws):
+                 mode=None, azmode=False, rand=False, greedy=False, nstep=False, **kws):
         """
         Create a new game.
             scores_file: file to use for the best score (default
@@ -87,6 +89,8 @@ class Game(object):
         self.__azmode = azmode
 
         self.rand = rand
+        self.greedy = greedy
+        self.nstep = nstep
 
 
         self.loadBestScore()
@@ -232,6 +236,10 @@ class Game(object):
                 
                 if self.rand:
                     m = randomMove.next_move()
+                elif self.greedy:
+                    m = greedyMove.next_move(self.board)
+                elif self.nstep:
+                    m = nStepLookAhead.next_move(self.board,3)
                 
                 
                 
@@ -243,7 +251,9 @@ class Game(object):
 
 
 
-                #time.sleep(0.01)
+                # time.sleep(1)
+                # print(self.rand)
+                # print(self.greedy)
                 # print(m)
 
                 if (m == pause_key):
