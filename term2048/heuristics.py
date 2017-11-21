@@ -1,4 +1,4 @@
-
+import numpy as np
 
 def sideHeuristics(board, a1=10, a2=5, a3=1):
     score = 0
@@ -17,3 +17,34 @@ def sideHeuristics(board, a1=10, a2=5, a3=1):
 def emptyHeuristics(board):
 
     return len(board.getEmptyCells())
+
+
+def patternHeuristics(board):
+
+    cells = np.array(board.cells)
+
+    W = np.array([[0,0,1,3],
+                  [0,1,3,5],
+                  [1,3,5,10],
+                  [3,5,10,15]])
+
+    # W = np.array([[3,4,11,12],
+    #               [2,5,10,13],
+    #               [1,6,9,14],
+    #               [0,7,8,15]])
+
+    return np.sum(W*cells) #/ 16
+
+    
+
+def clusterHeuristics(board):
+
+    cells = np.array(board.cells)
+
+    size = board.size()
+
+    penalty = np.sum(np.abs(cells[:size-1,:] - cells[1:size,:]))
+
+    penalty += np.sum(np.abs(cells[:,:size-1] - cells[:,1:size]))
+
+    return penalty / 16

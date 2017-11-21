@@ -21,6 +21,7 @@ from term2048.game import Game
 from term2048 import randomMove
 from term2048 import greedyMove
 from term2048 import nStepLookAhead
+from term2048 import expectimaxMove
 
 def run_game(q1, q2):
     while True:
@@ -28,10 +29,12 @@ def run_game(q1, q2):
         while g.board.canMove():
             # m = randomMove.next_move()
             # m = greedyMove.next_move(g.board)
-            m = nStepLookAhead.next_move(g.board,2)
+            # m = nStepLookAhead.next_move(g.board,3)
+            m = expectimaxMove.next_move(g.board)
             g.incScore(g.board.move(m))
 
         if g.board.won():
+            print("\n")
             print(g)
         q1.put(g.score)
         q2.put(g.board.won())
@@ -39,7 +42,7 @@ def run_game(q1, q2):
 def progress():
     now = time()
     rate = count / (now - start)
-    output = "\r%i high %f g/s %i total" % (high_score,rate,count)
+    output = "\r%i high %f game/s %i total" % (high_score,rate,count)
     sys.stdout.write(output)
     sys.stdout.flush()
 
