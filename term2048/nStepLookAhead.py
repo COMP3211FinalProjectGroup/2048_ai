@@ -8,7 +8,7 @@ def next_move(board, n=3):
     return m
 
 def predict_move(board, n):
-    h_score = 0
+    h_score = -100000000
     h_move = 0
 
     if n==1:
@@ -17,6 +17,8 @@ def predict_move(board, n):
     for i in range(1,5):
         newBoard = copy.deepcopy(board)
         score = newBoard.move(i)
+        if board.cells == newBoard.cells :
+            continue
         
         tmove, tscore = predict_move(newBoard, n-1)
 

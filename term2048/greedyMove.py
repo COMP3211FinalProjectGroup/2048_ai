@@ -9,15 +9,24 @@ def next_move(b):
 
 
 def predict_next(b):
-    h_score = 0
+    h_score = -100000000
     h_move = 0
 
     for i in range(1,5):
 
         board = copy.deepcopy(b)
         score = board.move(i)
-        # if score != 0:
-        #     score += 0.01 * heuristics.sideHeuristics(board) + 0.01 * heuristics.emptyHeuristics(board)
+
+        if board.cells == b.cells :
+            continue
+
+        # score += 1 * heuristics.sideHeuristics(board) - heuristics.clusterHeuristics(board)
+        # score += - heuristics.clusterHeuristics(board)
+        # score +=  heuristics.patternHeuristics(board)
+        # score +=  heuristics.patternHeuristics(board) - heuristics.clusterHeuristics(board)
+
+        if not board.canMove():
+            score = -1
 
         if score > h_score:
             h_score = score
