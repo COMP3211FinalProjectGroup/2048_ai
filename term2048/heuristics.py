@@ -25,13 +25,24 @@ def patternHeuristics(board):
 
     W = np.array([[0,0,1,3],
                   [0,1,3,5],
-                  [1,3,5,10],
-                  [3,5,10,15]])
+                  [1,3,5,15],
+                  [3,5,15,30]])
+
+    # W = np.array([[0,1,2,3],
+    #               [1,2,3,4],
+    #               [2,3,4,5],
+    #               [3,4,5,6]])
 
     # W = np.array([[3,4,11,12],
     #               [2,5,10,13],
     #               [1,6,9,14],
     #               [0,7,8,15]])
+
+    # W = np.array([[0,4,8,12],
+    #               [1,5,9,13],
+    #               [2,6,10,14],
+    #               [3,7,11,15]])
+                  
 
     return np.sum(W*cells) #/ 16
 
@@ -42,9 +53,56 @@ def clusterHeuristics(board):
     cells = np.array(board.cells)
 
     size = board.size()
+    penalty = 0
 
-    penalty = np.sum(np.abs(cells[:size-1,:] - cells[1:size,:]))
+    # penalty = np.sum(np.abs(cells[:size-1,:] - cells[1:size,:]))
 
-    penalty += np.sum(np.abs(cells[:,:size-1] - cells[:,1:size]))
+    # penalty += np.sum(np.abs(cells[:,:size-1] - cells[:,1:size]))
 
-    return penalty / 16
+    penalty += np.sum(np.abs(cells[:size-2,:] - cells[1:size-1,:]))
+    penalty += np.sum(np.abs(cells[2:size,:] - cells[1:size-1,:]))
+    penalty += np.sum(np.abs(cells[:,:size-2] - cells[:,1:size-1]))
+    penalty += np.sum(np.abs(cells[:,2:size] - cells[:,1:size-1]))
+
+    return penalty / 2 
+ 
+
+def monotonicHeuristics(board):
+
+    cells = np.array(board.cells)
+
+    size = board.size()
+    cells[cells<1] = 0.1
+
+
+    # score = cells[1:size,3]/cells[:size-1,3]
+    score1 = cells[1:size,3]/cells[:size-1,3]
+    score2 = cells[3,1:size]/cells[3,:size-1]
+
+    score = np.sum(score1[score1==2])
+    score+= np.sum(score2[score2==2])
+
+    return score * 20
+
+
+
+    
+def monotonicHeuristics2(board):
+
+    cells = np.array(board.cells)
+
+    size = board.size()
+
+
+
+    score1 = cells[1:size, 2:4] - cells[:size-1,2:4]
+    score1[score1>0] = 1
+    score1[score1<=0] = 0
+
+    score2 = cells[2:4, 1:size] - cells[2:4, :size-1]
+    score2[score2>0] = 1
+    score2[score2<=0] = 0
+
+    score = np.sum(score1) + np.sum(score2)
+
+    return score * 10
