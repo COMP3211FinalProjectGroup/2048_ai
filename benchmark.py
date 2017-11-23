@@ -29,8 +29,8 @@ def run_game(q1, q2):
         while g.board.canMove():
             # m = randomMove.next_move()
             # m = greedyMove.next_move(g.board)
-            # m = nStepLookAhead.next_move(g.board,3)
-            m = expectimaxMove.next_move(g.board)
+            m = nStepLookAhead.next_move(g.board,5)
+            # m = expectimaxMove.next_move(g.board)
             g.incScore(g.board.move(m))
 
         if g.board.won():
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
 
     # Start game processes
-    for i in range(4):
+    for i in range(2):
         p = Process(target=run_game,args=(q1, q2))
         procs.append(p)
         p.start()
