@@ -244,7 +244,7 @@ class Game(object):
                 elif self.nstep:
                     m = nStepLookAhead.next_move(self.board,n=3)
                 elif self.expectimax:
-                    m = expectimaxMove.next_move(self.board,n=4)
+                    m = expectimaxMove.next_move(self.board,n=5)
                 
                 
                 else:
