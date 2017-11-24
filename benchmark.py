@@ -1,6 +1,6 @@
 """
 benchmark algorithms and output results.
-this file uses multiprocessing and bypass the graphical output so the speed is 50x
+this file uses multiprocessing and bypass the graphical output so the speed is 4x
 modified from Github (https://gist.github.com/fungus/9821090)
 
 @author: peterwongny
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
 
     # Start game processes
-    for i in range(2):
+    for i in range(4):
         p = Process(target=run_game,args=(q1, q2))
         procs.append(p)
         p.start()

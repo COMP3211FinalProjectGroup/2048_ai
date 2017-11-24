@@ -2,13 +2,13 @@ from . import heuristics
 import copy
 import random
 
-def next_move(board, n=4):
+def next_move(board, n=5):
     h_score = -1
     h_move = 0
     if len(board.getEmptyCells())>4:
         pass
     else:
-        n = 5
+        n = 6
     # if len(board.getEmptyCells())>9:
     #     n = 3
 

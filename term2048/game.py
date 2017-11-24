@@ -242,9 +242,9 @@ class Game(object):
                 elif self.greedy:
                     m = greedyMove.next_move(self.board)
                 elif self.nstep:
-                    m = nStepLookAhead.next_move(self.board,3)
+                    m = nStepLookAhead.next_move(self.board,n=3)
                 elif self.expectimax:
-                    m = expectimaxMove.next_move(self.board)
+                    m = expectimaxMove.next_move(self.board,n=5)
                 
                 
                 else:
