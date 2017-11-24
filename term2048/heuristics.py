@@ -72,7 +72,7 @@ def clusterHeuristics(board):
     #                     continue
     #                 penalty = np.abs(cells[i+h][j+k] - cells[i][j]) 
 
-    return penalty / 32
+    return penalty / 2
  
 
 def monotonicHeuristics(board):
@@ -90,7 +90,7 @@ def monotonicHeuristics(board):
     score = np.sum(score1[score1==2])
     score+= np.sum(score2[score2==2])
 
-    return score * 10
+    return score * 20
 
 
 
