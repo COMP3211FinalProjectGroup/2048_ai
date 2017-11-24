@@ -95,11 +95,11 @@ def monotonicHeuristics2(board):
 
 
 
-    score1 = cells[1:size, 2:4] - cells[:size-1,2:4]
+    score1 = cells[3:size, :] - cells[:size-1,3]
     score1[score1>0] = 1
     score1[score1<=0] = 0
 
-    score2 = cells[2:4, 1:size] - cells[2:4, :size-1]
+    score2 = cells[3, 1:size] - cells[3, :size-1]
     score2[score2>0] = 1
     score2[score2<=0] = 0
 
