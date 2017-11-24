@@ -8,7 +8,7 @@ def next_move(board, n=5):
     if len(board.getEmptyCells())>4:
         pass
     else:
-        n = 6
+        n = 5
     # if len(board.getEmptyCells())>9:
     #     n = 3
 
@@ -22,8 +22,8 @@ def next_move(board, n=5):
             h_score = score
             h_move = i
 
-    if h_move == 0:
-        return random.randint(1,4)
+    # if h_move == 0:
+    #     return random.randint(1,4)
 
     return h_move
 
