@@ -8,7 +8,7 @@ def next_move(board, n=5):
     if len(board.getEmptyCells())>4:
         pass
     else:
-        n = 5
+        n = 6
     # if len(board.getEmptyCells())>9:
     #     n = 3
 
